@@ -1,0 +1,18 @@
+{
+  "name": "contacts-panel-index",
+  "description": "Contacts index panel",
+  "dependencies": {
+    "ericgj/data-table": "*",
+    "component/pager": "*"  
+  },
+  "development": {},
+  "scripts": [
+    "index.js",
+    "template.js",
+    "recordTemplate.js",
+    "headerTemplate.js"
+  ],
+  "styles": [
+    "contacts-panel-index.css"
+  ]
+}
