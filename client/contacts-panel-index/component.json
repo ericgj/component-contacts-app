@@ -2,6 +2,8 @@
   "name": "contacts-panel-index",
   "description": "Contacts index panel",
   "dependencies": {
+    "component/emitter": "*",
+    "component/event": "*",
     "ericgj/data-table": "*",
     "component/pager": "*"  
   },

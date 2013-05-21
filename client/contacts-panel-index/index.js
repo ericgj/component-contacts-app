@@ -1,3 +1,6 @@
+var Emitter = require('emitter')
+  , event   = require('event')
+
 var DataTable = require('data-table')
   , Pager     = require('pager')
 
@@ -9,38 +12,40 @@ var recStruc = domify(require('./recordTemplate.js'))
 
 /** Interfaces 
  *
- *  - Contact must define .count, .page(n) requests with callbacks
+ *  - contacts must define .count, .page(n) requests with callbacks
  *  - pager should match component/pager
  *
  ** Events
  *
- *  - pager.el 'load' -> pager 'show'
+ *  - window 'load'   -> panel 'onwindowload'    -> pager 'show'
  *  - pager 'show'    -> table 'render'
  *  - table 'render'  -> panel 'update table' (for external consumption)
 */
 
-module.exports = function(el,Contact){
+module.exports = function(el,contacts){
 
-  // widget initialization
+  var PERPAGE = 20;
 
-  var table = DataTable(struc.querySelector('data-table'), Contact)
+  // widget generation
+
+  var panel = {}
+    , table = DataTable(struc.querySelector('data-table'), contacts)
                   .header(hdrStruc).record(recStruc)
-
     , pager = Pager(struc.querySelector('pager'))
-                  .perpage(20)
+                  .perpage(PERPAGE)
 
 
   // event hookup
 
-  pager.el.onload = function(){
-    Contact.count( function(err,n){ 
+  panel.onwindowload = function(){
+    contacts.count( function(err,n){ 
       pager.total(n);
       pager.show(0);
     })
   };
 
   pager.on('show', function(n){
-    Contact.page( n, function(err,data){
+    contacts.page( n, PERPAGE, function(err,data){
       table.render(data);
     })
   });
@@ -53,11 +58,15 @@ module.exports = function(el,Contact){
   // attach to DOM
   
   el.appendChild(struc);
+  event.bind(window, 'load', panel.onwindowload.bind(panel));
 
 
-  // panel encapsulation
+  // panel exposure
 
-  var panel = Emitter({ table: table, pager: pager});
+  panel.table = table;
+  panel.pager = pager;
+  panel.PERPAGE = PERPAGE;
+  Emitter(panel);
 
   return panel;
 }
