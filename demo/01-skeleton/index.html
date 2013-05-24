@@ -1,0 +1,19 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Contacts index panel demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="build/build.css" type="text/css">
+  </head>
+  <body>
+   <h1>Contacts index panel demo</h1>
+   <div id="contacts-panel-index"></div>
+   <script src="build/build.js"></script>
+   <script>
+      var contacts = require('dummy-model');
+      contacts.loadFixture('contacts');
+
+      require('contacts-panel-index')('#contacts-panel-index', contacts)
+   </script>
+  </body>
+</html>

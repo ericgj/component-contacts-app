@@ -1,0 +1,10 @@
+{
+  "name": "dummy-model",
+  "description": "Dummy model for testing/demos",
+  "dependencies": {},
+  "development": {},
+  "scripts": [
+    "index.js",
+    "contacts.js"
+  ]
+}

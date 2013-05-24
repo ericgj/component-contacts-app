@@ -4,6 +4,7 @@
   "dependencies": {
     "component/emitter": "*",
     "component/event": "*",
+    "component/domify": "*",
     "ericgj/data-table": "*",
     "component/pager": "*"  
   },

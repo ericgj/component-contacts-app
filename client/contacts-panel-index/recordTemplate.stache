@@ -1,0 +1,5 @@
+<div class="row" data-id="{{record.id}}" data-index="{{index}}">
+  <div class="cell" style="width: 38%;">{{record.name}}</div>
+  <div class="cell" style="width: 38%;">{{record.email}}</div>
+  <div class="cell" style="width: 18%;">{{record.phone}}</div>
+</div>

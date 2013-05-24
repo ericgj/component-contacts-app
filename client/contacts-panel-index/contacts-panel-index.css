@@ -1,0 +1,25 @@
+
+.data-table {
+  display: table;
+  list-style-type: none;
+  width: 600px;
+}
+
+.data-table > .row {
+  display: table-row;
+}
+
+.data-table > .header {
+  background-color: #cccccc;
+  font-weight: bold;
+}
+
+.data-table > .row > .cell {
+  display: inline-block;
+  padding: 0.5%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+

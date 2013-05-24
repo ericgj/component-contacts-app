@@ -1,0 +1,5 @@
+<div class="header row">
+  <div class="cell" style="width: 38%;">Name</div>
+  <div class="cell" style="width: 38%;">Email</div>
+  <div class="cell" style="width: 18%;">Phone</div>
+</div>

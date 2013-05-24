@@ -1,0 +1,1 @@
+module.exports = '<div>\n  <h1></h1>\n  <div class="data-table"></div>\n  <div class="pager"></div>\n</div>\n\n';

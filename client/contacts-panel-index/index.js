@@ -1,18 +1,19 @@
 var Emitter = require('emitter')
   , event   = require('event')
+  , domify  = require('domify')
 
 var DataTable = require('data-table')
   , Pager     = require('pager')
 
 var struc = domify(require('./template.js'))[0]
 
-var recStruc = domify(require('./recordTemplate.js'))
-  , hdrStruc = domify(require('./headerTemplate.js'))
+var recStruc = require('./recordTemplate.js')
+  , hdrStruc = require('./headerTemplate.js')
 
 
 /** Interfaces 
  *
- *  - contacts must define .count, .page(n) requests with callbacks
+ *  - contacts must define .count, .page(n, limit) requests with callbacks
  *  - pager should match component/pager
  *
  ** Events
@@ -26,14 +27,16 @@ module.exports = function(el,contacts){
 
   var PERPAGE = 20;
 
+  el = (typeof el == 'string' ? document.querySelector(el) : el);
+
   // widget generation
 
   var panel = {}
-    , table = DataTable(struc.querySelector('data-table'), contacts)
-                  .header(hdrStruc).record(recStruc)
-    , pager = Pager(struc.querySelector('pager'))
-                  .perpage(PERPAGE)
-
+    , table = new DataTable(struc.querySelector('.data-table'), contacts)
+                    .header(hdrStruc).record(recStruc)
+    , pager = new Pager()
+                    .perpage(PERPAGE)
+    struc.querySelector('.pager').appendChild(pager.el[0]);
 
   // event hookup
 
@@ -52,7 +55,7 @@ module.exports = function(el,contacts){
 
   table.on('render', function(){ 
     panel.emit('update table')
-  }
+  });
 
 
   // attach to DOM
