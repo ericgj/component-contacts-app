@@ -10,8 +10,6 @@ var Contact = module.exports =
     .attr('phone', {type: 'string'})
 
 
-Contact.url('/contacts');
-
 /* custom endpoints */
 
 Contact.use(queries);
