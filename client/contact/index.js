@@ -14,5 +14,10 @@ Contact.url('/contacts');
 /* custom endpoints */
 
 Contact.use(queries);
-Contact.query('page', 'all', {page: 'p', limit: 'n'});
+Contact.query('pageQuery', 'all', {page: 'p', limit: 'n'});
+Contact.query('count', 'count');
+
+Contact.page = function(p,n,cb){ 
+  return this.pageQuery({page:p, limit:n},cb); 
+}
 

@@ -3,7 +3,7 @@
   "description": "1st demo",
   "local": [
     "contacts-panel-index",
-    "dummy-model"
+    "contact"
   ],
   "paths": ["../../client"],
   "styles": [
