@@ -3,7 +3,7 @@ The GWS contacts database project
 
 ## Roadmap: through first demo
 
-_updated 22 MAY 2013_
+_updated 25 MAY 2013_
 
 __Working skeleton: paginated data table with served data__
 
@@ -12,9 +12,9 @@ __Working skeleton: paginated data table with served data__
 3. Working data table with faked model  DONE
 4. Integrate pagination  DONE
 5. Contact list data model with xhr  DONE
-6. Basic server endpoints with fake data. Storage not yet implemented.
-7. Data table with served data (fake). 
-8. Add some real-ish data from Access.
+6. Basic server endpoints with fake data. Storage not yet implemented.  DONE
+7. Data table with served data (fake).  DONE 
+8. Set up connection to Access, add some real-ish data.
 
 __Milestone 1: dashboard with sidebar allowing filtering by call list__
 

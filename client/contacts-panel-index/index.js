@@ -49,7 +49,7 @@ module.exports = function(el,contacts){
 
   pager.on('show', function(n){
     contacts.page( n, PERPAGE, function(err,data){
-      table.render(data);
+      table.render(data.array());
     })
   });
 

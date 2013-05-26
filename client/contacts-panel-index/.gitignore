@@ -1,2 +1,5 @@
 components
 build
+headerTemplate.js
+recordTemplate.js
+template.js

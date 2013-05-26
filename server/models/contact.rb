@@ -2,14 +2,24 @@
 class DummyContact
 
   def to_h
-    { name: name,
-      email: email,
-      phone: phone
+    { id: attributes['id'],
+      name: attributes['name'],
+      email: attributes['email'],
+      phone: attributes['phone']
     }
   end
 
   def to_json(*a); to_h.to_json(*a); end
 
+  attr_reader :attributes
+
+  def initialize(hash)
+    @attributes = {}
+    hash.each do |(k,v)|
+      self.attributes[k] = v
+    end
+  end
+      
   class << self
 
     def _data
@@ -26,9 +36,8 @@ class DummyContact
 
     def loadFixture(name,save=false)
       clear unless save
-      data = Array(
-              JSON.load( File.open( fixture(name) ) )
-             )
+      data = JSON.load( File.open( fixture(name) ) )
+      data = Array === data ? data : [data]
       data.each do |rec| _data << new(rec); end
     end
 
@@ -37,7 +46,8 @@ class DummyContact
     end
 
     def fixture(name)
-      File.expand_path('../test/fixtures/contact',File.dirname(__FILE__))
+      File.expand_path(File.join('../test/fixtures/contact', name + ".json"),
+                       File.dirname(__FILE__))
     end
 
   end

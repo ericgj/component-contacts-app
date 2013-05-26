@@ -1,4 +1,5 @@
 require 'json'
+require 'logger'
 
 require 'cuba'
 # require 'rack/protection'
@@ -8,15 +9,28 @@ Cuba.use Rack::Static,
   :urls => ['/01-skeleton'],
   :index => 'index.html'
 
+Cuba.use Rack::Logger, ::Logger::DEBUG
+
 # Cuba.use Rack::Protection
 
 module ResponseHelpers
   def json!
     self['Content-Type'] = 'application/json'
   end
+
+end
+
+module AppHelpers
+  def xhr?
+    lambda { req.xhr? }
+  end
+  def logger
+    env['rack.logger']
+  end
 end
 
 Cuba::Response.__send__(:include, ResponseHelpers)
+Cuba.plugin(AppHelpers)
 
 require_relative "models/contact"
 
@@ -25,23 +39,25 @@ Cuba.define do
   on 'contact' do
 
     # TODO sort
-    on get, 'all', param("p") do |page|
-      limit = Integer(param("n")) rescue 20
-      page = Integer(page) rescue 0
+    on get, 'all' do
+      limit = Integer(param["n"]) rescue 20
+      page = Integer(param["p"]) rescue 0
       contacts = Contact.page(page,limit)
 
-      on accept('application/json') do
+      on xhr? do
         res.json!
-        res.write JSON.dump(contacts)
+        res.write r = JSON.dump(contacts)
+        logger.debug "GET /contact/all => " + r
       end
 
     end
 
     on get, 'count' do
       count = Contact.count
-      on accept('application/json') do
+      on xhr? do
         res.json!
-        res.write JSON.dump(count)
+        res.write r = count.to_json
+        logger.debug "GET /contact/count => " + r
       end
     end
 

@@ -6,7 +6,8 @@
     "component/event": "*",
     "component/domify": "*",
     "ericgj/data-table": "*",
-    "component/pager": "*"  
+    "component/pager": "*",
+    "matthewmueller/hogan": "*"
   },
   "development": {},
   "scripts": [

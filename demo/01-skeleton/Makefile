@@ -7,7 +7,7 @@ TEMPLATES = $(STACHE:.stache=.js)
 DATAJS = $(DATA:.data.json=.js)
 
 build: components $(SRC) $(CONVERT) $(TEMPLATES) $(DATAJS)
-	@component build --dev
+	@component build
 
 components: component.json
 	@component install --dev
@@ -16,7 +16,7 @@ components: component.json
 	@component convert $<
 
 %.js: %.stache
-	@minstache < $< > $@
+	@./hogan-compile.js < $< > $@
 
 %.js: %.data.json
 	@echo "module.exports = " > $@ 
