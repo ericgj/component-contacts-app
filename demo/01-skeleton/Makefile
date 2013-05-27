@@ -1,13 +1,11 @@
 SRC =  $(wildcard ../../client/*/*.js)
 HTML = $(wildcard ../../client/*/*.html)
-STACHE = $(wildcard ../../client/*/*.stache)
 DATA = $(wildcard ../../client/dummy*/*.data.json)
 CONVERT = $(HTML:.html=.js)
-TEMPLATES = $(STACHE:.stache=.js)
 DATAJS = $(DATA:.data.json=.js)
 
-build: components $(SRC) $(CONVERT) $(TEMPLATES) $(DATAJS)
-	@component build
+build: components $(SRC) $(CONVERT) $(DATAJS)
+	@component build --dev --use /usr/lib/node_modules/component-hogan
 
 components: component.json
 	@component install --dev
@@ -15,15 +13,12 @@ components: component.json
 %.js: %.html
 	@component convert $<
 
-%.js: %.stache
-	@./hogan-compile.js < $< > $@
-
 %.js: %.data.json
 	@echo "module.exports = " > $@ 
 	@cat "$<"  >> $@
 	@echo ";" >> $@
 
 clean:
-	rm -fr build components $(CONVERT) $(TEMPLATES) $(DATAJS)
+	rm -fr build components $(CONVERT) $(DATAJS)
 
 .PHONY: clean

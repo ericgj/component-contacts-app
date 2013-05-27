@@ -6,17 +6,18 @@
     "component/event": "*",
     "component/domify": "*",
     "ericgj/data-table": "*",
-    "component/pager": "*",
-    "matthewmueller/hogan": "*"
+    "component/pager": "*"
   },
   "development": {},
   "scripts": [
     "index.js",
-    "template.js",
-    "recordTemplate.js",
-    "headerTemplate.js"
+    "template.js"
   ],
   "styles": [
     "contacts-panel-index.css"
+  ],
+  "templates": [
+    "recordTemplate.stache",
+    "headerTemplate.stache"
   ]
 }
