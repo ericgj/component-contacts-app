@@ -3,7 +3,8 @@ class DummyContact
 
   def to_h
     { id: attributes['id'],
-      name: attributes['name'],
+      first: attributes['first'],
+      last: attributes['last'],
       email: attributes['email'],
       phone: attributes['phone']
     }

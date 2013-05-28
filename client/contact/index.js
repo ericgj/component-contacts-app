@@ -5,10 +5,18 @@ var M = require('model')
 var Contact = module.exports =
   M('Contact')
     .attr('id', {required: true, type: 'number'})
-    .attr('name', {type: 'string'})
+    .attr('first', {type: 'string'})
+    .attr('last' , {type: 'string'})
     .attr('email', {type: 'string'})
     .attr('phone', {type: 'string'})
 
+Contact.prototype.name = function(){
+  var f = this.first(); l = this.last();
+  return (f && l ? 
+          (f + " " + l) : 
+          ((f || '') + (l || ''))
+         );
+}
 
 /* custom endpoints */
 

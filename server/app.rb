@@ -40,8 +40,8 @@ Cuba.define do
 
     # TODO sort
     on get, 'all' do
-      limit = Integer(param["n"]) rescue 20
-      page = Integer(param["p"]) rescue 0
+      limit = begin; Integer(req.params["n"]); rescue TypeError; 20; end
+      page = begin; Integer(req.params["p"]);  rescue TypeError; 0; end
       contacts = Contact.page(page,limit)
 
       on xhr? do

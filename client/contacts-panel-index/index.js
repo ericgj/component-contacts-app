@@ -34,8 +34,7 @@ module.exports = function(el,contacts){
   var panel = {}
     , table = new DataTable(struc.querySelector('.data-table'), contacts)
                     .header(hdrStruc).record(recStruc)
-    , pager = new Pager()
-                    .perpage(PERPAGE)
+    , pager = new Pager().perpage(PERPAGE)
     struc.querySelector('.pager').appendChild(pager.el[0]);
 
   // event hookup
@@ -73,5 +72,4 @@ module.exports = function(el,contacts){
 
   return panel;
 }
-
 
