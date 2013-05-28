@@ -14,7 +14,7 @@ __Working skeleton: paginated data table with served data__
 5. Contact list data model with xhr  DONE
 6. Basic server endpoints with fake data. Storage not yet implemented.  DONE
 7. Data table with served data (fake).  DONE 
-8. Set up connection to Access, add some real-ish data.
+8. Set up connection to Access, add some real-ish data.  DONE
 
 __Milestone 1: dashboard with sidebar allowing filtering by call list__
 
