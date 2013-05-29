@@ -1,0 +1,8 @@
+<div>
+  <h3>Call lists<span class="create-list"></span></h3>
+  <ul>
+    {{#lists}}
+    <li data-id={{id}}>{{title}}</li>
+    {{/lists}}
+  </ul>
+<div>

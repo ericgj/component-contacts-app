@@ -1,0 +1,21 @@
+{
+  "name": "list-panel-index",
+  "description": "List index panel",
+  "dependencies": {
+    "component/emitter": "*",
+    "component/event": "*",
+    "component/delegates": "*",
+    "yields/empty": "*",
+    "ericgj/data": "*,
+    "component/more": "*"
+  },
+  "development": {},
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "template.js"
+  ],
+  "styles": [
+    "list-panel-index.css"
+  ]
+}
