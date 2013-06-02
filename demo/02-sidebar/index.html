@@ -25,13 +25,7 @@
         , listPanel = require('list-panel-index')('#list-panel-index', ContactList)
 
       function updateContactsPanelList(listId){
-        contactsPanel.update( Contact.countList({id: listId}).run,
-                              function(p,n,fn){ 
-                                Contact.pageList({id: listId})
-                                  .query({page: p, limit: n})
-                                  .run(fn);
-                              }
-                            );
+        contactsPanel.update( Contact.pageList(listId) );
       }
 
       bus.from(listPanel, 'select')

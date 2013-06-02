@@ -21,21 +21,19 @@ Contact.prototype.name = function(){
 /* custom endpoints */
 
 Contact.use(queries);
-Contact.collection('pageList', '/list/:id/contact/all')
+Contact.endpoint('pageList', '/list/:id/contact/all', function(res,fn){
+  if (res.error) return fn(error(res));
+  var raw = JSON.parse(res.body),
+    , total = raw.total
+    , data  = new Collection(raw.contacts);
+  fn(null,data,total);
+});
 
-Contact.count = function(fn){
-  request.get(this.url('count'), function(res){
-    if (res.error) return fn(error(res));
-    fn(null,JSON.parse(res.body));
-  });
-}
-
-Contact.countList = function(listId,fn){
-  request.get(['','list',listId,'contact','count'].join('/'), function(res){
-    if (res.error) return fn(error(res));
-    fn(null,JSON.parse(res.body));
-  });
-}
+/* example
+ Contact.pageList({id: 123})
+        .query({page: 1, limit: 20})
+        .run( function(err,data,total){ });
+*/
 
 function error(res){
   return new Error('got ' + res.status + ' response');

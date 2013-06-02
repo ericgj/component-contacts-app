@@ -3,8 +3,7 @@
   "description": "Contact List model",
   "dependencies": {
     "visionmedia/superagent": "*",
-    "component/model": "*",
-    "ericgj/model-queries": "*"
+    "component/model": "*"
   },
   "development": {},
   "main": "index.js",

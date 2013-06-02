@@ -13,7 +13,9 @@ var recStruc = require('./recordTemplate.js')
 
 /** Interfaces 
  *
- *  - update() must pass .count, .page(n, limit) functions with callbacks
+ *  - update() must pass in a _query endpoint_ whose callback returns 
+ *      (1) a (paged, sorted) collection of contact instances
+ *      (2) a total number of contacts for the query
  *  - pager should match component/pager
  *
  ** Events
@@ -38,20 +40,19 @@ module.exports = function(el,contacts){
 
   // bus event responses
 
-  panel.update = function(count,query){
-    count( function(err,n){ 
-      pager.total(n);
-      pager.query = query;
-      pager.show(0);
-    });
+  panel.update = function(query){
+    panel.query = query;
+    pager.show(0);
   }
 
   // internal events
 
   pager.on('show', function(n){
-    pager.query( n, PERPAGE, function(err,data){
+    panel.query.query({page: n, limit: PERPAGE})
+         .run( function(err,data,max){
+      if (max) pager.total(max);
       table.render(data.array());
-    })
+    });
   });
 
   table.on('render', function(){ 
@@ -69,7 +70,7 @@ module.exports = function(el,contacts){
   panel.table = table;
   panel.pager = pager;
   panel.PERPAGE = PERPAGE;
-  panel.query = contacts.page.bind(contacts);  // 
+  panel.query = contacts.page
   Emitter(panel);
 
   return panel;
