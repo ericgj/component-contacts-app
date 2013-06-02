@@ -2,7 +2,7 @@ var Emitter = require('emitter')
   , event   = require('event')
   , delegates = require('delegates')
   , empty   = require('empty')
-  , data    = require('data')
+  , attr    = require('attr')
 
 var more = require('more')
 
@@ -17,7 +17,7 @@ var template  = require('./template.js');
  ** Events
  *
  *  - window 'load'         -> panel.onwindowload, .update, .render
- *  - li 'click'            -> panel.onselect   ~> panel 'select list'
+ *  - li 'click'            -> panel.onselect   -> panel 'select list'
  *  - .create-list 'click'  -> panel.oncreate   -> panel 'create list'
  *  - (external) -> panel.update, .render
 */
@@ -56,10 +56,8 @@ module.exports = function(el,contactLists){
   
   panel.onselect = function(e){
     var li = e.target
-      , id = data(li).get('id')
-    contactLists.get(id, function(err,list){
-      this.emit('select list', list);
-    });
+      , id = attr(li).get('data-id')
+    this.emit('select list', id);
   }
 
   panel.oncreate = function(){

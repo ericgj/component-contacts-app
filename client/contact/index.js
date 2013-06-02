@@ -21,14 +21,17 @@ Contact.prototype.name = function(){
 /* custom endpoints */
 
 Contact.use(queries);
-Contact.query('pageQuery', 'all', {page: 'p', limit: 'n'});
-
-Contact.page = function(p,n,cb){ 
-  return this.pageQuery({page:p, limit:n},cb); 
-}
+Contact.collection('pageList', '/list/:id/contact/all')
 
 Contact.count = function(fn){
   request.get(this.url('count'), function(res){
+    if (res.error) return fn(error(res));
+    fn(null,JSON.parse(res.body));
+  });
+}
+
+Contact.countList = function(listId,fn){
+  request.get(['','list',listId,'contact','count'].join('/'), function(res){
     if (res.error) return fn(error(res));
     fn(null,JSON.parse(res.body));
   });

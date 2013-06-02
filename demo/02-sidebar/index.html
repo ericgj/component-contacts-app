@@ -1,0 +1,43 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Contacts index panel with sidebar demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="build/build.css" type="text/css">
+    <link rel="stylesheet" href="demo.css" type="text/css">
+  </head>
+  <body>
+   <h1>Contacts index panel with sidebar demo</h1>
+   <div id="sidebar">
+     <div id="list-panel-index"></div>
+   </div>
+   <div id="main">
+     <div id="contacts-panel-index"></div>
+   </div>
+   <script src="build/build.js"></script>
+   <script>
+      var bus = require('bus')
+
+      var Contact  = require('contact')
+        , ContactList = require('contact-list')
+
+      var contactsPanel = require('contacts-panel-index')('#contacts-panel-index', Contact)
+        , listPanel = require('list-panel-index')('#list-panel-index', ContactList)
+
+      function updateContactsPanelList(listId){
+        contactsPanel.update( Contact.countList({id: listId}).run,
+                              function(p,n,fn){ 
+                                Contact.pageList({id: listId})
+                                  .query({page: p, limit: n})
+                                  .run(fn);
+                              }
+                            );
+      }
+
+      bus.from(listPanel, 'select')
+         .handle( updateContactsPanelList );
+
+      
+   </script>
+  </body>
+</html>

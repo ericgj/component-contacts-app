@@ -1,0 +1,13 @@
+{
+  "name": "contact-list",
+  "description": "Contact List model",
+  "dependencies": {
+    "visionmedia/superagent": "*",
+    "component/model": "*",
+    "ericgj/model-queries": "*"
+  },
+  "development": {},
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]

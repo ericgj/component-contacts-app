@@ -6,16 +6,18 @@
     "component/event": "*",
     "component/delegates": "*",
     "yields/empty": "*",
-    "ericgj/data": "*,
+    "matthewp/attr": "*,
     "component/more": "*"
   },
   "development": {},
   "main": "index.js",
   "scripts": [
-    "index.js",
-    "template.js"
+    "index.js"
   ],
   "styles": [
     "list-panel-index.css"
+  ],
+  "templates": [
+    "template.stache"
   ]
 }

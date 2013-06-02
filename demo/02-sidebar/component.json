@@ -1,0 +1,12 @@
+{
+  "name": "demo-01-skeleton",
+  "description": "1st demo",
+  "local": [
+    "contacts-panel-index",
+    "contact"
+  ],
+  "paths": ["../../client"],
+  "styles": [
+    "demo-01-skeleton.css"
+  ]
+}

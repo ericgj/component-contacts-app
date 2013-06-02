@@ -1,0 +1,15 @@
+
+body {
+  min-width: 600px;
+  margin: 60px;
+}
+
+#sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+}
+
+

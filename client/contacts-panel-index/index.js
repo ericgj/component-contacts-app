@@ -13,14 +13,13 @@ var recStruc = require('./recordTemplate.js')
 
 /** Interfaces 
  *
- *  - contacts must define .count, .page(n, limit) requests with callbacks
+ *  - update() must pass .count, .page(n, limit) functions with callbacks
  *  - pager should match component/pager
  *
  ** Events
  *
- *  - window 'load'   -> panel 'onwindowload'    -> pager 'show'
- *  - pager 'show'    -> table 'render'
- *  - table 'render'  -> panel 'update table' (for external consumption)
+ *  - pager 'show'    -> table.render   -> panel 'update table' 
+ *  - (external)      -> panel.update,  pager.show
 */
 
 module.exports = function(el,contacts){
@@ -37,17 +36,20 @@ module.exports = function(el,contacts){
     , pager = new Pager().perpage(PERPAGE)
     struc.querySelector('.pager').appendChild(pager.el[0]);
 
-  // event hookup
+  // bus event responses
 
-  panel.onwindowload = function(){
-    contacts.count( function(err,n){ 
+  panel.update = function(count,query){
+    count( function(err,n){ 
       pager.total(n);
+      pager.query = query;
       pager.show(0);
-    })
-  };
+    });
+  }
+
+  // internal events
 
   pager.on('show', function(n){
-    contacts.page( n, PERPAGE, function(err,data){
+    pager.query( n, PERPAGE, function(err,data){
       table.render(data.array());
     })
   });
@@ -60,7 +62,6 @@ module.exports = function(el,contacts){
   // attach to DOM
   
   el.appendChild(struc);
-  event.bind(window, 'load', panel.onwindowload.bind(panel));
 
 
   // panel exposure
@@ -68,6 +69,7 @@ module.exports = function(el,contacts){
   panel.table = table;
   panel.pager = pager;
   panel.PERPAGE = PERPAGE;
+  panel.query = contacts.page.bind(contacts);  // 
   Emitter(panel);
 
   return panel;
