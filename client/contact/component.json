@@ -4,6 +4,7 @@
   "dependencies": {
     "visionmedia/superagent": "*",
     "component/model": "*",
+    "component/collection": "*",
     "ericgj/model-queries": "*"
   },
   "development": {},

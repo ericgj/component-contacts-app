@@ -1,12 +1,18 @@
 {
   "name": "demo-01-skeleton",
   "description": "1st demo",
+  "dependencies": {
+    "component/event": "*",
+    "ericgj/bus": "*"
+  },
   "local": [
     "contacts-panel-index",
-    "contact"
+    "list-panel-index",
+    "contact",
+    "contact-list"
   ],
   "paths": ["../../client"],
   "styles": [
-    "demo-01-skeleton.css"
+    "demo-02-sidebar.css" 
   ]
 }

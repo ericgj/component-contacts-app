@@ -6,7 +6,7 @@ require 'cuba'
 
 Cuba.use Rack::Static, 
   :root => '../demo', 
-  :urls => ['/01-skeleton'],
+  :urls => ['/01-skeleton', '/02-sidebar'],
   :index => 'index.html'
 
 Cuba.use Rack::Logger, ::Logger::DEBUG
@@ -27,12 +27,20 @@ module AppHelpers
   def logger
     env['rack.logger']
   end
+
+  def page_params(p=0,n=20)
+    page =  begin; Integer(req.params["page"]);  rescue TypeError; p; end
+    limit = begin; Integer(req.params["limit"]); rescue TypeError; n; end
+    [page,limit]
+  end
+
 end
 
 Cuba::Response.__send__(:include, ResponseHelpers)
 Cuba.plugin(AppHelpers)
 
 require_relative "models/contact"
+require_relative "models/list"
 
 Cuba.define do
   
@@ -40,24 +48,43 @@ Cuba.define do
 
     # TODO sort
     on get, 'all' do
-      limit = begin; Integer(req.params["n"]); rescue TypeError; 20; end
-      page = begin; Integer(req.params["p"]);  rescue TypeError; 0; end
-      contacts = Contact.page(page,limit)
+      page, limit = page_params(0,20)
+      contacts = Contact.all
+      total    = contacts.length
+      contacts = contacts[page*limit, limit]
 
       on xhr? do
         res.json!
-        res.write r = JSON.dump(contacts)
+        res.write r = JSON.dump({total: total, contacts: contacts})
         logger.debug "GET /contact/all => " + r
       end
 
     end
 
-    on get, 'count' do
-      count = Contact.count
+  end
+
+  on 'contact-list' do
+
+    on get, 'all' do
+      lists = List.all
+
       on xhr? do
         res.json!
-        res.write r = count.to_json
-        logger.debug "GET /contact/count => " + r
+        res.write r =  JSON.dump(lists)
+        logger.debug "GET /list/all => " + r
+      end
+    end
+
+    on get, ':id/contact/all' do |id|
+      page, limit = page_params(0,20)
+      contacts = List[Integer(id)].contacts
+      total    = contacts.length
+      contacts = contacts[page*limit, limit]
+      
+      on xhr? do
+        res.json!
+        res.write r = JSON.dump({total: total, contacts: contacts})
+        logger.debug "GET /list/#{id}/contact/all => " + r
       end
     end
 

@@ -1,8 +1,9 @@
 var Emitter = require('emitter')
   , event   = require('event')
-  , delegates = require('delegates')
+  , delegate = require('delegate')
   , empty   = require('empty')
   , attr    = require('attr')
+  , domify  = require('domify')
 
 var more = require('more')
 
@@ -27,12 +28,23 @@ module.exports = function(el,contactLists){
   var MAXSHOW = 5;
   var el = (typeof el == 'string' ? document.querySelector(el) : el);
 
+  var panel = {};
+
   // widget initialization
 
   panel.update = function(lists){
-    this.list = template({lists: lists || []});
-    this.more = more(this.struc.querySelector('ul')[0])
+    this.list = domify(template({lists: lists || []}))[0];
+    this.more = more(this.list.querySelector('ul'))
                   .max(MAXSHOW).more("Show more...").less("Show less..");
+
+    if (this.events) this.events.unbind();
+    
+    // delegates not working atm
+    // this.events = delegates(this.list, this);
+    // this.events.bind('click li', 'onselect');
+    // this.events.bind('click .create-list', 'oncreate');
+    
+    this.setupEvents();
     this.render();
   }
 
@@ -42,33 +54,44 @@ module.exports = function(el,contactLists){
     this.el.appendChild(this.list);
   }
 
+  panel.setupEvents = function(){
+    if (this.events) this.clearEvents();
+    this.events = [
+      delegate.bind(this.list, 'li',           'click', this.onselect.bind(this)),
+      delegate.bind(this.list, '.create-list', 'click', this.oncreate.bind(this))
+    ]
+  }
+
+  panel.clearEvents = function(){
+    delegate.unbind(this.list, 'li', 'click', this.events[0]);
+    delegate.unbind(this.list, '.create-list', 'click', this.events[1]);
+  }
+
   // event hookup
 
+/* 
   panel.onwindowload = function(){
     // note we probably don't need this. 
     // template render triggered externally through panel.update()
     panel.update([]);
   }
+*/
 
-  panel.events = delegates(struc, panel);
-  panel.events.bind('click li', 'onselect');
-  panel.events.bind('click .create-list', 'oncreate');
-  
   panel.onselect = function(e){
     var li = e.target
       , id = attr(li).get('data-id')
-    this.emit('select list', id);
+    this.emit('select', id);
   }
 
   panel.oncreate = function(){
     // bring up new contact list form
-    this.emit('create list');
+    this.emit('create');
   }
  
 
   // bind to DOM
 
-  event.bind(window, 'load', panel.onwindowload.bind(panel));
+//  event.bind(window, 'load', panel.onwindowload.bind(panel));
 
 
   // panel exposure

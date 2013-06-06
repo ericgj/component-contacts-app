@@ -16,7 +16,8 @@
    </div>
    <script src="build/build.js"></script>
    <script>
-      var bus = require('bus')
+      var bus = require('ericgj-bus')()
+        , event = require('component-event');
 
       var Contact  = require('contact')
         , ContactList = require('contact-list')
@@ -25,13 +26,18 @@
         , listPanel = require('list-panel-index')('#list-panel-index', ContactList)
 
       function updateContactsPanelList(listId){
-        contactsPanel.update( Contact.pageList(listId) );
+        contactsPanel.update( Contact.pageList({id: listId}) );
       }
 
       bus.from(listPanel, 'select')
          .handle( updateContactsPanelList );
 
-      
+      event.bind(window, 'load', function(){
+        ContactList.all( function(err,lists){
+          listPanel.update(lists.array());
+        });
+      });
+
    </script>
   </body>
 </html>

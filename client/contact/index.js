@@ -1,4 +1,5 @@
 var M = require('model')
+  , Collection = require('collection')
   , queries = require('model-queries')
   , request = require('superagent')
 
@@ -21,9 +22,9 @@ Contact.prototype.name = function(){
 /* custom endpoints */
 
 Contact.use(queries);
-Contact.endpoint('pageList', '/list/:id/contact/all', function(res,fn){
+Contact.endpoint('pageList', '/contact-list/:id/contact/all', function(res,fn){
   if (res.error) return fn(error(res));
-  var raw = JSON.parse(res.body),
+  var raw = res.body
     , total = raw.total
     , data  = new Collection(raw.contacts);
   fn(null,data,total);

@@ -4,9 +4,10 @@
   "dependencies": {
     "component/emitter": "*",
     "component/event": "*",
-    "component/delegates": "*",
+    "component/delegate": "*",
+    "component/domify": "*",
     "yields/empty": "*",
-    "matthewp/attr": "*,
+    "matthewp/attr": "*",
     "component/more": "*"
   },
   "development": {},
@@ -21,3 +22,4 @@
     "template.stache"
   ]
 }
+
