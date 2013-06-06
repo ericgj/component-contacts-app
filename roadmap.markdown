@@ -3,7 +3,7 @@ The GWS contacts database project
 
 ## Roadmap: through first demo
 
-_updated 05 JUN 2013_
+_updated 06 JUN 2013_
 
 __Working skeleton: paginated data table with served data__
 
@@ -21,8 +21,8 @@ __Milestone 1: dashboard with sidebar allowing filtering by call list__
 1. UI add sidebar, call list view  DONE
 2. Client add event bus DONE
 3. Client hook up list model, contact model to endpoints  DONE
-4. Server endpoint get /list  (fake)
-5. Server endpoint get /list/:listid/contact (fake)
+4. Server endpoint get /contact-list  (fake models)  DONE
+5. Server endpoint get /contact-list/:listid/contact (fake models)  DONE
 
 Note: at this point we have a demo-able dashboard.
 
