@@ -51,6 +51,7 @@ module.exports = function(el,contacts){
     panel.query.query({page: n, limit: PERPAGE})
          .run( function(err,data,max){
       if (max) pager.total(max);
+      pager.render();
       table.render(data.array());
     });
   });

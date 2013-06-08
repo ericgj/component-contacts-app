@@ -37,9 +37,9 @@ module.exports = function(el,contactLists){
     this.more = more(this.list.querySelector('ul'))
                   .max(MAXSHOW).more("Show more...").less("Show less..");
 
-    if (this.events) this.events.unbind();
     
-    // delegates not working atm
+    /* delegates not working atm  */
+    // if (this.events) this.events.unbind();
     // this.events = delegates(this.list, this);
     // this.events.bind('click li', 'onselect');
     // this.events.bind('click .create-list', 'oncreate');
