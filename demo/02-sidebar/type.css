@@ -1,0 +1,62 @@
+body {
+  font: 100%/1.5 Georgia,Palatino,"Palatino Linotype",Times,"Times New Roman",serif; 
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: futura-pt, Futura, "Century Gothic", AppleGothic, sans-serif;
+}
+
+p {
+  font-size: 1em; /* 14px */
+  line-height: 1.5em; /* 21px */
+  margin: 0 0 1.5em 0;
+}
+
+.data-table  > .row  > .cell {
+  font-size: 1em; /* 14px */
+  line-height: 1.5em; /* 21px */
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+h1 {
+  font-size: 1.7143em; /* 24px */
+  line-height: 1.75em; /* 42px */
+  margin-top: 0.875em;
+  margin-bottom: 0em;
+}
+
+h2 {
+  font-size: 1.5714em; /* 22px */
+  line-height: 1.9091em; /* 42px */
+  margin-top: 0.9545em;
+  margin-bottom: 0em;
+}
+
+h3 {
+  font-size: 1.4286em; /* 20px */
+  line-height: 1.05em; /* 21px */
+  margin-top: 1.05em;
+  margin-bottom: 0em;
+}
+
+h4 {
+  font-size: 1.2857em; /* 18px */
+  line-height: 1.1667em; /* 21px */
+  margin-top: 1.1667em;
+  margin-bottom: 0em;
+}
+
+h5 {
+  font-size: 1.1429em; /* 16px */
+  line-height: 1.3125em; /* 21px */
+  margin-top: 1.3125em;
+  margin-bottom: 0em;
+}
+
+h6 {
+  font-size: 1em; /* 14px */
+  line-height: 1.5em; /* 21px */
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+}
