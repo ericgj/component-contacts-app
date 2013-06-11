@@ -26,7 +26,7 @@ Contact.endpoint('pageList', '/contact-list/:id/contact/all', function(res,fn){
   if (res.error) return fn(error(res));
   var raw = res.body
     , total = raw.total
-    , data  = new Collection(raw.contacts);
+    , data  = new Collection(raw.contacts).map(function(c){ return new Contact(c); });
   fn(null,data,total);
 });
 
