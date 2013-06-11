@@ -12,13 +12,6 @@ p {
   margin: 0 0 1.5em 0;
 }
 
-.data-table  > .row  > .cell {
-  font-size: 1em; /* 14px */
-  line-height: 1.5em; /* 21px */
-  margin-top: 0em;
-  margin-bottom: 0em;
-}
-
 h1 {
   font-size: 1.7143em; /* 24px */
   line-height: 1.75em; /* 42px */
