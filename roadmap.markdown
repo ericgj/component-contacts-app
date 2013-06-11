@@ -3,7 +3,7 @@ The GWS contacts database project
 
 ## Roadmap
 
-_updated 10 JUN 2013_
+_updated 11 JUN 2013_
 
 ### (01-skeleton) Working skeleton: paginated data table with served data
 
@@ -28,10 +28,10 @@ Note: at this point we have a demo-able dashboard.
 
 ### (02-sidebar) Demo: dashboard
 
-1. UI set up grid css
-2. UI add other filter categories to sidebar (faked)
-3. UI add more-all-less controller to call list view
-4. UI add fake buttons & controls for rest of the dashboard
+1. UI set up grid css  DONE
+2. UI add other filter categories to sidebar (faked)  DEFER
+3. UI add more-all-less controller to call list view  DEFER
+4. UI add fake buttons & controls for rest of the dashboard  DEFER
 
 
 ### (03-event-entry) Milestone 2: entry form by event
@@ -39,7 +39,7 @@ Note: at this point we have a demo-able dashboard.
 1. Simple in-place editing integrated with component/model (multiple elements) DONE
 2. Server endpoint `get /event-list/:id`
 3. Draft contact edit panel (data table + in-place editing), served view data, faked model.save
-4. Draft demo page based on 02-sidebar
+4. Draft demo page based on 02-sidebar but loading contact edit panel
 5. Add header fields to contact edit panel (text boxes for now), integrate with in-place editing
 6. Draft contact event list model
 7. Revise contact model
