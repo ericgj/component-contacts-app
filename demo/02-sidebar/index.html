@@ -11,10 +11,8 @@
   <body class="grid">
    <h1>Contacts index panel with sidebar demo</h1>
    <div id="sidebar" class="col-3-12">
-     <div id="list-panel-index"></div>
    </div>
    <div id="main" class="col-9-12">
-     <div id="contacts-panel-index"></div>
    </div>
    <script src="build/build.js"></script>
    <script>
@@ -24,8 +22,8 @@
       var Contact  = require('contact')
         , ContactList = require('contact-list')
 
-      var contactsPanel = require('contacts-panel-index')('#contacts-panel-index', Contact)
-        , listPanel = require('list-panel-index')('#list-panel-index', ContactList)
+      var contactsPanel = require('contacts-panel-index')('#main', Contact)
+        , listPanel = require('list-panel-index')('#sidebar', ContactList)
 
       function updateContactsPanelList(listId){
         contactsPanel.update( Contact.pageList({id: listId}) );

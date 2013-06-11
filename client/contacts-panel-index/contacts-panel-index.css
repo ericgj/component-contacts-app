@@ -1,20 +1,20 @@
 
-.data-table {
+.contacts-panel-index .data-table {
   display: table;
   list-style-type: none;
   width: 100%;
 }
 
-.data-table > .row {
+.contacts-panel-index .data-table > .row {
   display: table-row;
 }
 
-.data-table > .header {
+.contacts-panel-index .data-table > .header {
   background-color: #cccccc;
   font-weight: bold;
 }
 
-.data-table > .row > .cell {
+.contacts-panel-index .data-table > .row > .cell {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;

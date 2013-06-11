@@ -1,4 +1,4 @@
-<div>
+<div class="list-panel-index">
   <h3>Call lists<span class="create-list"></span></h3>
   <ul>
     {{#lists}}
