@@ -1,11 +1,11 @@
 The GWS contacts database project
 ==================================
 
-## Roadmap: through first demo
+## Roadmap
 
-_updated 06 JUN 2013_
+_updated 10 JUN 2013_
 
-__Working skeleton: paginated data table with served data__
+### (01-skeleton) Working skeleton: paginated data table with served data
 
 1. Implement the data table, with reference to component/model  DONE
 2. Faked contact list data model  DONE
@@ -16,7 +16,7 @@ __Working skeleton: paginated data table with served data__
 7. Data table with served data (fake).  DONE 
 8. Set up connection to Access, add some real-ish data.  DONE
 
-__Milestone 1: dashboard with sidebar allowing filtering by call list__
+### (02-sidebar) Milestone 1: dashboard with sidebar allowing filtering by call list
 
 1. UI add sidebar, call list view  DONE
 2. Client add event bus DONE
@@ -26,10 +26,22 @@ __Milestone 1: dashboard with sidebar allowing filtering by call list__
 
 Note: at this point we have a demo-able dashboard.
 
-__Demo 1: dashboard__
+### (02-sidebar) Demo: dashboard
 
 1. UI set up grid css
 2. UI add other filter categories to sidebar (faked)
 3. UI add more-all-less controller to call list view
 4. UI add fake buttons & controls for rest of the dashboard
+
+
+### (03-event-entry) Milestone 2: entry form by event
+
+1. Simple in-place editing integrated with component/model (multiple elements) DONE
+2. Server endpoint `get /event-list/:id`
+3. Draft contact edit panel (data table + in-place editing), served view data, faked model.save
+4. Draft demo page based on 02-sidebar
+5. Add header fields to contact edit panel (text boxes for now), integrate with in-place editing
+6. Draft contact event list model
+7. Revise contact model
+8. Server endpoints `post /event-list`, `put /event-list` (faked backend)
 
