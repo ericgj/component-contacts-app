@@ -7,7 +7,7 @@ module.exports = View;
 function View(model){
   if (!(this instanceof View)) return new View(model);
   this.model = model;
-  this.el = domify(template)[0];
+  this.el = domify(template);
   this.errors = {};
 
   this._display( emptyString, 'name','organization','email','phone','comments' );
