@@ -10,7 +10,7 @@ function View(model){
   this.el = domify(template)[0];
   this.errors = {};
 
-  this._delegate( emptyString, 'name','organization','email','phone','comments' );
+  this._display( emptyString, 'name','organization','email','phone','comments' );
 
   reactive(this.el, model, this);
   return this;
@@ -24,12 +24,13 @@ View.prototype.update = function(e){
     if (model.validate) {
       model.validate();
       this.errors = modelErrors(model);
-      target.setCustomValidity(this.errors(name));
+      target.setCustomValidity(this.errors[name] || '');
+      model.emit('change errors');
     }
   }
 }
 
-View.prototype._delegate = function(fn){
+View.prototype._display = function(fn){
   var meths = [].slice.call(arguments,1);
   for (var i=0;i<meths.length;++i){
     var meth = meths[i]
@@ -47,7 +48,7 @@ function modelErrors(model){
   var ret = {};
   for (var i=0;i<model.errors.length;++i){
     var err = model.errors[i];
-    ret[err.attr] = (ret[err.attr] || []).push(err.message);
+    ret[err.attr] = (ret[err.attr] ? ret[err.attr] + "; " : "") + err.message;
   }
   return ret;
 }

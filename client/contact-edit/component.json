@@ -6,8 +6,7 @@
     "component/domify": "*"
   },
   "development": { 
-    "component/model": "*",
-    "segmentio/model-defaults": "*"
+    "component/model": "*"
   },
   "main": "index.js",
   "scripts": [

@@ -32,12 +32,17 @@
                       .attr('email')
                       .attr('phone')
                       .attr('comments')
+      
+      Contact.validate( function(c) { if (!(c.name())) c.error('name', 'missing') } );
+      Contact.validate( function(c) { if (c.name()[0] == 'F') c.error('name', 'cant start with F') } );
+      Contact.validate( function(c) { if (c.name().length < 2) c.error('name', 'must be at least 2 chars') } );
 
       albert = new Contact({name: 'Albert', organization: 'Greenpeace'});
+      newguy = new Contact;
 
       /////////////////////////////////////////////////////
       var View = require('contact-edit')
-         , newView = View( new Contact ) 
+         , newView = View( newguy ) 
         , editView = View( albert );
 
       document.getElementById('new-contact').appendChild(newView.el);
