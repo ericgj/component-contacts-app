@@ -12,7 +12,14 @@ function View(model){
 
   this._display( emptyString, 'name','organization','email','phone','comments' );
 
-  reactive(this.el, model, this);
+  binding = reactive(this.el, model, this);
+  binding.bind("autosubmit", function(el){
+    el.onsubmit = function(e){
+      e.preventDefault();
+      model[ model.isNew() ? 'save' : 'update' ]();
+    }
+  });
+
   return this;
 }
 

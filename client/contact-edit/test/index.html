@@ -35,9 +35,9 @@
   </head>
   <body>
     <h1>Contact Form</h1>
-    <div class="contact" id="new-contact">
+    <div id="new-contact">
     </div>
-    <div class="contact" id="edit-contact">
+    <div id="edit-contact">
     </div>
 
     <script src="../build/build.js"></script>
@@ -56,6 +56,8 @@
 
       albert = new Contact({name: 'Albert', organization: 'Greenpeace'});
       newguy = new Contact;
+
+      albert.on('saving', function(c){ console.log("saving %s...",albert.name()) });
 
       /////////////////////////////////////////////////////
       var View = require('contact-edit')

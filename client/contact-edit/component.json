@@ -6,7 +6,8 @@
     "component/domify": "*"
   },
   "development": { 
-    "component/model": "*"
+    "component/model": "*",
+    "visionmedia/debug": "*"
   },
   "main": "index.js",
   "scripts": [
