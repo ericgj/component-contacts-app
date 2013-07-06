@@ -6,7 +6,7 @@ require 'cuba'
 
 Cuba.use Rack::Static, 
   :root => '../demo', 
-  :urls => ['/01-skeleton', '/02-sidebar'],
+  :urls => ['/01-skeleton', '/02-sidebar', '/03-event-entry'],
   :index => 'index.html'
 
 Cuba.use Rack::Logger, ::Logger::DEBUG
@@ -81,11 +81,11 @@ Cuba.define do
       total    = contacts.length
       contacts = contacts[page*limit, limit]
       
-      on xhr? do
+  #   on xhr? do
         res.json!
         res.write r = JSON.dump({total: total, contacts: contacts})
         logger.debug "GET /list/#{id}/contact/all => " + r
-      end
+  #   end
     end
 
   end

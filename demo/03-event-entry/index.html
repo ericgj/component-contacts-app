@@ -1,0 +1,27 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Event contacts entry form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="grid.css" type="text/css">
+    <link rel="stylesheet" href="build/build.css" type="text/css">
+    <link rel="stylesheet" href="type.css" type="text/css">
+  </head>
+  <body>
+   <h1>Event contacts entry form</h1>
+   <div id="main">
+   </div>
+   <script src="build/build.js"></script>
+   <script>
+      var Contact  = require('contact')
+        , Panel    = require('event-panel-edit')
+ 
+      var panel;
+
+      Contact.pageList({id: 1}).run( function(err,data){
+        panel = Panel('#main',null,data.array());
+      });
+
+   </script>
+  </body>
+</html>

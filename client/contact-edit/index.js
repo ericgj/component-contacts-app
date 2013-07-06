@@ -1,5 +1,6 @@
 var reactive = require('reactive')
   , domify   = require('domify')
+  , emitter  = require('emitter')
   , template = require('./template')
 
 module.exports = View;
@@ -13,14 +14,13 @@ function View(model){
   this._display( emptyString, 'name','organization','email','phone','comments' );
 
   binding = reactive(this.el, model, this);
-  binding.bind("autosubmit", function(el){
+  binding.bind("nosubmit", function(el){
     el.onsubmit = function(e){
       e.preventDefault();
-      model[ model.isNew() ? 'save' : 'update' ]();
     }
   });
 
-  return this;
+  return emitter(this);
 }
 
 View.prototype.update = function(e){
@@ -35,6 +35,16 @@ View.prototype.update = function(e){
       model.emit('change errors');
     }
   }
+}
+
+View.prototype.save = function(){
+  var model = this.model;
+  model.save();
+  self.emit('show');
+}
+
+View.prototype.cancel = function(){
+  self.emit('show');
 }
 
 View.prototype._display = function(fn){

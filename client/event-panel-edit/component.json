@@ -1,0 +1,23 @@
+{
+  "name": "event-panel-edit",
+  "description": "Event edit panel",
+  "dependencies": {
+    "component/domify": "*",
+    "ericgj/multi-view": "*"
+  },
+  "development": {},
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "template.js"
+  ],
+  "local": [
+    "contact",
+    "contact-show",
+    "contact-edit"
+  ],
+  "paths": [".."],
+  "styles": [
+    "event-panel-edit.css"
+  ]
+}

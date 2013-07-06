@@ -1,5 +1,5 @@
 <div class="contact-edit">
-  <form action="/contact" autosubmit>
+  <form action="/contact" nosubmit>
     <fieldset class="grid grid-pad">
       <div class="col-2-12">
         <label for="name">Name</label>
@@ -23,11 +23,12 @@
       </div>
       <div class="col-4-12">
         <label for="comments">Comments</label>
-        <input type="text" id="comments" name="comments" value="{comments}" on-change="update" />
+        <textarea id="comments" name="comments" value="{comments}" on-change="update"></textarea>
         <span class="error">{errors.comments || ''}</span>
       </div>
       <div class="col-12-12 push-right">
-        <input type="submit" value="Save" />
+        <input on-click="save" type="submit" value="Save" />
+        <input on-click="cancel" type="submit" value="Cancel" />
       </div>
     </fieldset>
   </form>

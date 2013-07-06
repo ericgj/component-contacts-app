@@ -36,13 +36,16 @@ Note: at this point we have a demo-able dashboard.
 
 ### (03-event-entry) Milestone 2: entry form by event
 
-1. Simple in-place editing integrated with component/model (multiple elements) DONE, BUT MAYBE NOT USE FOR NOW
-2. Draft contact edit panel (data table + new form), served view data
+1. <del>Simple in-place editing integrated with component/model (multiple elements)</del>
+1. Reactive contact-edit form  DONE
+1. <del>Reactive hooks into data-table  DONE</del>
+1. Reactive modal view controller  DONE
+2. Draft contact edit panel (multi-view + contact-edit forms)
 3. Draft contact event list model
-4. Draft demo page based on 02-sidebar but loading contact edit panel
+4. <del>Draft demo page based on 02-sidebar but loading contact edit panel</del>
+4. Draft demo page to redirect to /event-list/:id, add client-side routing
 5. Server endpoint `get /event-list/:id`
-6. Add header fields to contact edit panel
+6. Add header form to contact edit panel
 7. Revise contact model
 8. Server endpoints `post /event-list`, `put /event-list` (faked backend)
-9. Adjust demo page to redirect to /event-list/:id, add client-side routing?
 

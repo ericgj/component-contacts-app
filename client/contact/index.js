@@ -8,8 +8,10 @@ var Contact = module.exports =
     .attr('id', {required: true, type: 'number'})
     .attr('first', {type: 'string'})
     .attr('last' , {type: 'string'})
+    .attr('organization', {type: 'string'})
     .attr('email', {type: 'string'})
     .attr('phone', {type: 'string'})
+    .attr('comments', {type: 'string'})
 
 Contact.prototype.name = function(){
   var f = this.first(); l = this.last();

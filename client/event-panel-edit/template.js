@@ -1,0 +1,1 @@
+module.exports = '<div class="panel">\n  <div class="event"></div>\n  <div class="new-contact"></div>\n  <div class="contacts"></div>\n</div>\n\n';

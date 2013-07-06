@@ -3,6 +3,7 @@
   "description": "Contact edit form",
   "dependencies": {
     "component/reactive": "*",  
+    "component/emitter": "*",
     "component/domify": "*"
   },
   "development": { 

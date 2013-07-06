@@ -1,0 +1,13 @@
+{
+  "name": "demo-03-event-entry",
+  "description": "3rd demo",
+  "dependencies": {
+  },
+  "local": [
+    "contact",
+    "event-panel-edit"
+  ],
+  "paths": ["../../client"],
+  "styles": [
+  ]
+}
