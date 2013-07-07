@@ -11,7 +11,7 @@ function View(model){
   this.el = domify(template);
   this.errors = {};
 
-  this._display( emptyString, 'name','organization','email','phone','comments' );
+  this._display( emptyString, 'first','last','organization','email','phone','comments' );
 
   binding = reactive(this.el, model, this);
   binding.bind("nosubmit", function(el){
@@ -40,11 +40,12 @@ View.prototype.update = function(e){
 View.prototype.save = function(){
   var model = this.model;
   model.save();
-  self.emit('show');
+  this.emit('show');
 }
 
 View.prototype.cancel = function(){
-  self.emit('show');
+  this.model.undoAll();
+  this.emit('show');
 }
 
 View.prototype._display = function(fn){

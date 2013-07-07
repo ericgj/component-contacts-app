@@ -1,6 +1,7 @@
 var M = require('model')
   , Collection = require('collection')
   , queries = require('model-queries')
+  , undoable = require('model-undoable')
   , request = require('superagent')
 
 var Contact = module.exports =
@@ -21,9 +22,15 @@ Contact.prototype.name = function(){
          );
 }
 
-/* custom endpoints */
 
 Contact.use(queries);
+Contact.use(undoable);
+
+Contact.on('undo', function(contact,attr,val){ console.log('Contact undo: %s <-- %s', attr, val); });
+Contact.on('change', function(contact,attr,val){ console.log('Contact change: %s = %s', attr, val); });
+
+/* custom endpoints */
+
 Contact.endpoint('pageList', '/contact-list/:id/contact/all', function(res,fn){
   if (res.error) return fn(error(res));
   var raw = res.body

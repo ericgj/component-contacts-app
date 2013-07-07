@@ -5,7 +5,8 @@
     "visionmedia/superagent": "*",
     "component/model": "*",
     "component/collection": "*",
-    "ericgj/model-queries": "*"
+    "ericgj/model-queries": "*",
+    "ericgj/model-undoable": "*"
   },
   "development": {},
   "scripts": [

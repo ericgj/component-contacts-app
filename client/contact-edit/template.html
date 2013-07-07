@@ -2,16 +2,21 @@
   <form action="/contact" nosubmit>
     <fieldset class="grid grid-pad">
       <div class="col-2-12">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="{name}" on-change="update" />
-        <span class="error">{errors.name || ''}</span>
+        <label for="first">First Name</label>
+        <input type="text" id="first" name="first" value="{first}" on-change="update" />
+        <span class="error">{errors.first || ''}</span>
       </div>
       <div class="col-2-12">
+        <label for="last">Last Name</label>
+        <input type="text" id="last" name="last" value="{last}" on-change="update" />
+        <span class="error">{errors.last || ''}</span>
+      </div>
+      <div class="col-3-12">
         <label for="organization">Organization</label>
         <input type="text" id="organization" name="organization" value="{organization}" on-change="update" />
         <span class="error">{errors.organization || ''}</span>
       </div>
-      <div class="col-2-12">
+      <div class="col-3-12">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value="{email}" on-change="update" />
         <span class="error">{errors.email || ''}</span>
@@ -21,13 +26,17 @@
         <input type="tel" pattern="[0-9\s\.\-]*" id="phone" name="phone" value="{phone}" on-change="update" />
         <span class="error">{errors.phone || ''}</span>
       </div>
-      <div class="col-4-12">
+      <div class="col-10-12">
         <label for="comments">Comments</label>
         <textarea id="comments" name="comments" value="{comments}" on-change="update"></textarea>
         <span class="error">{errors.comments || ''}</span>
       </div>
-      <div class="col-12-12 push-right">
+      <div class="col-1-12">
+        <label>&nbsp;</label>
         <input on-click="save" type="submit" value="Save" />
+      </div>
+      <div class="col-1-12">
+        <label>&nbsp;</label>
         <input on-click="cancel" type="submit" value="Cancel" />
       </div>
     </fieldset>
