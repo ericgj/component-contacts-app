@@ -40,7 +40,8 @@ Note: at this point we have a demo-able dashboard.
 1. Reactive contact-edit form  DONE
 1. <del>Reactive hooks into data-table  DONE</del>
 1. Reactive modal view controller  DONE
-2. Draft contact edit panel (multi-view + contact-edit forms)
+2. Draft contact edit panel (multi-view + contact-edit forms)  DONE
+2. Undoable (cancel) behavior in contact-edit form   DONE
 3. Draft contact event list model
 4. <del>Draft demo page based on 02-sidebar but loading contact edit panel</del>
 4. Draft demo page to redirect to /event-list/:id, add client-side routing
